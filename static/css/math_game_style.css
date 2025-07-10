@@ -1,0 +1,535 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0B0F1A 0%, #1A1B2E 35%, #16213E 100%);
+    color: #E2E8F0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 25px 35px, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
+        radial-gradient(1px 1px at 50px 80px, rgba(120, 219, 255, 0.6) 0%, transparent 50%),
+        radial-gradient(1px 1px at 90px 45px, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+        radial-gradient(2px 2px at 140px 90px, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(1px 1px at 170px 40px, rgba(120, 119, 198, 0.5) 0%, transparent 50%);
+    background-repeat: repeat;
+    background-size: 250px 150px;
+    animation: sparkle 4s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+@keyframes sparkle {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.02); }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: -1;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.02); }
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-info div {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.25rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94A3B8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-info div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.game-info div span {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.score span { 
+    background: linear-gradient(135deg, #FBBF24, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.level span { 
+    background: linear-gradient(135deg, #10B981, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lives span { 
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.game-area {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.spaceship {
+    font-size: clamp(3rem, 6vw, 4rem);
+    margin-bottom: 1.5rem;
+    animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(1deg); }
+    50% { transform: translateY(-12px) rotate(0deg); }
+    75% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+.problem-container {
+    margin: 2rem 0;
+}
+
+.problem {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #F8FAFC;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.answer-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 480px;
+    width: 100%;
+}
+
+.option-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    color: #F8FAFC;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.option-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.option-btn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.2),
+        0 4px 6px -2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.option-btn:hover::before {
+    opacity: 1;
+}
+
+.option-btn:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+}
+
+.option-btn.correct {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(21, 128, 61, 0.1));
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #86EFAC;
+    box-shadow: 
+        0 10px 15px -3px rgba(34, 197, 94, 0.2),
+        0 4px 6px -2px rgba(34, 197, 94, 0.1);
+}
+
+.option-btn.incorrect {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.1));
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #FCA5A5;
+    box-shadow: 
+        0 10px 15px -3px rgba(239, 68, 68, 0.2),
+        0 4px 6px -2px rgba(239, 68, 68, 0.1);
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    color: #F8FAFC;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.2),
+        0 4px 6px -2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+button:hover::before {
+    opacity: 1;
+}
+
+button:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+}
+
+#start-btn, #new-game-btn {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(167, 139, 250, 0.1));
+    border-color: rgba(96, 165, 250, 0.3);
+    color: #DBEAFE;
+    font-weight: 600;
+}
+
+#start-btn:hover, #new-game-btn:hover {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(167, 139, 250, 0.15));
+    border-color: rgba(96, 165, 250, 0.4);
+    box-shadow: 
+        0 10px 15px -3px rgba(96, 165, 250, 0.2),
+        0 4px 6px -2px rgba(96, 165, 250, 0.1);
+}
+
+.controls {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.message {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    min-height: 0;
+    padding: 0;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.message:not(:empty) {
+    min-height: 60px;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message:not(:empty)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.message.correct {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(21, 128, 61, 0.05));
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #86EFAC;
+    box-shadow: 
+        0 10px 15px -3px rgba(34, 197, 94, 0.1),
+        0 4px 6px -2px rgba(34, 197, 94, 0.05);
+}
+
+.message.incorrect {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(185, 28, 28, 0.05));
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #FCA5A5;
+    box-shadow: 
+        0 10px 15px -3px rgba(239, 68, 68, 0.1),
+        0 4px 6px -2px rgba(239, 68, 68, 0.05);
+}
+
+.message.game-over {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.05));
+    border-color: rgba(251, 191, 36, 0.3);
+    color: #FDE68A;
+    box-shadow: 
+        0 10px 15px -3px rgba(251, 191, 36, 0.1),
+        0 4px 6px -2px rgba(251, 191, 36, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .game-area {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .game-info {
+        gap: 0.75rem;
+    }
+    
+    .option-btn {
+        font-size: 1rem;
+        padding: 1rem 1.25rem;
+    }
+    
+    button {
+        font-size: 0.9rem;
+        padding: 0.875rem 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .title {
+        margin-bottom: 1.5rem;
+    }
+    
+    .game-info {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    .game-info div {
+        padding: 1rem;
+    }
+    
+    .game-area {
+        padding: 2rem 1.25rem;
+    }
+    
+    .options-container {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        max-width: 400px;
+    }
+    
+    .option-btn {
+        font-size: 1rem;
+        padding: 1.125rem 1rem;
+        min-height: 60px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    button {
+        width: 100%;
+        max-width: 280px;
+        padding: 1rem 1.5rem;
+    }
+    
+    .message {
+        font-size: 1rem;
+        padding: 1rem;
+        min-height: 50px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 0.75rem;
+    }
+    
+    .game-info div {
+        padding: 0.875rem;
+    }
+    
+    .game-info div span {
+        font-size: 1.5rem;
+    }
+    
+    .game-area {
+        padding: 1.5rem 1rem;
+    }
+    
+    .option-btn {
+        font-size: 0.9rem;
+        padding: 1rem;
+        min-height: 55px;
+    }
+    
+    button {
+        font-size: 0.875rem;
+        padding: 0.875rem 1.25rem;
+    }
+}

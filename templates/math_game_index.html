@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Math Adventure</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/math_game_style.css') }}">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <h1 class="title">🚀 Space Math Adventure</h1>
+        
+        <div class="game-info">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="level">Level: <span id="level">1</span></div>
+            <div class="lives">Lives: <span id="lives">3</span></div>
+        </div>
+        
+        <div class="game-area">
+            <div class="spaceship">🛸</div>
+            <div class="problem-container">
+                <div class="problem" id="problem">Ready to blast off?</div>
+                <div class="answer-section" id="answer-section" style="display: none;">
+                    <div class="options-container" id="options-container">
+                        <button class="option-btn" onclick="selectAnswer(0)">A</button>
+                        <button class="option-btn" onclick="selectAnswer(1)">B</button>
+                        <button class="option-btn" onclick="selectAnswer(2)">C</button>
+                        <button class="option-btn" onclick="selectAnswer(3)">D</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="start-btn" onclick="startGame()">🚀 Start Mission</button>
+            <button id="new-game-btn" onclick="newGame()" style="display: none;">New Mission</button>
+        </div>
+        
+        <div class="message" id="message"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/math_game_game.js') }}"></script>
+</body>
+</html>
